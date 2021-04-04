@@ -1,0 +1,41 @@
+{
+    "name": "artarts36/laravel-notification-logger",
+    "description": "",
+    "type": "library",
+    "require": {
+        "laravel/framework": "5.6"
+    },
+    "require-dev": {
+        "orchestra/testbench": "*",
+        "squizlabs/php_codesniffer": "3.*",
+        "doctrine/dbal": "^2.6"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ArtARTs36",
+            "email": "aukrainskiy@phoenixit.ru"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ArtARTs36\\LaravelNotificationsLogger\\": "src"
+        },
+        "classmap": [
+            "database/migrations"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ArtARTs36\\LaravelNotificationsLogger\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit -v --coverage-text --colors=never --configuration phpunit.xml --stop-on-failure --stop-on-risky",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "lint": [
+            "./vendor/bin/phpcs --standard=PSR2 src/",
+            "./vendor/bin/phpcs --standard=PSR2 tests/"
+        ]
+    }
+}

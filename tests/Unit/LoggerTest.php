@@ -25,13 +25,13 @@ class LoggerTest extends TestCase
 
         //
 
-//        $message = $logger->save($data);
-//
-//        self::assertEquals('test-subject', $message->subject);
-//        self::assertEquals('test-body', $message->body);
-//        self::assertEquals('test-recipient', $message->recipient);
-//        self::assertEquals('test-sender', $message->sender);
-//        self::assertNull($message->system_id);
+        $message = $logger->save($data);
+
+        self::assertEquals('test-subject', $message->subject);
+        self::assertEquals('test-body', $message->body);
+        self::assertEquals('test-recipient', $message->recipient);
+        self::assertEquals('test-sender', $message->sender);
+        self::assertNull($message->system_id);
 
         //
 

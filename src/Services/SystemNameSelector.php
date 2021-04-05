@@ -18,7 +18,7 @@ class SystemNameSelector
     public function select(string $subjectOrNotification): ?string
     {
         foreach ($this->systemsDict as $pattern => $systemName) {
-            if (preg_match($pattern, $subjectOrNotification)) {
+            if (@preg_match($pattern, $subjectOrNotification)) {
                 return $systemName;
             }
         }

@@ -16,8 +16,8 @@ class RouteProvider extends RouteServiceProvider
 
     protected function mapApiRoutes(): void
     {
-        Route::prefix(config('notification_logger.routes.api.prefix', ''))
-            ->middleware(config('notification_logger.routes.api.middleware', []))
+        Route::prefix(config('notifications_logger.routes.api.prefix', ''))
+            ->middleware(config('notifications_logger.routes.api.middleware', []))
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../../routes/api.php');
     }

@@ -7,3 +7,4 @@
 /phpunit.xml        export-ignore
 /tests              export-ignore
 /.github              export-ignore
+/readme.md              export-ignore

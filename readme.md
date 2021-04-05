@@ -8,6 +8,6 @@
 
 - Add to providers: NotificationsLoggerProvider
 
-- Run: `php artisan publish --provider=LaravelNotificaionsLogger`
+- Run: `php artisan vendor:publish --tag=notifications_logger`
 
 - Run `php artisan migrate`

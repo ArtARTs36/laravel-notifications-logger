@@ -17,15 +17,45 @@ class MessageSentHandler
 
     public function handle(MessageSent $event): void
     {
-        foreach ($event->message->getTo() as $to) {
+        foreach ($event->message->getTo() ?? [] as $toMail => $toName) {
             $this->logger->save(
                 new MessageData(
                     $event->message->getSubject() ?? '',
                     $event->message->getBody() ?? '',
-                    $to ?? '',
-                    $event->message->getSender() ?? ''
+                    is_string($toMail) ? $toMail : $toName,
+                    $this->parseSender($event->message)
                 )
             );
         }
+    }
+
+    protected function parseSender(\Swift_Message $message): string
+    {
+        foreach ([$message->getFrom(), $message->getSender()] as $expect) {
+            if (is_string($expect)) {
+                return $expect;
+            }
+
+            if (($sender = $this->parseValueFromArray($expect))) {
+                return $sender;
+            }
+        }
+
+        return '';
+    }
+
+    protected function parseValueFromArray(array $array): ?string
+    {
+        $key = array_key_first($array);
+
+        if (is_string($key)) {
+            if ($array[$key] === null) {
+                return $key;
+            }
+
+            return "$key <$array[$key]>";
+        }
+
+        return $array[$key];
     }
 }

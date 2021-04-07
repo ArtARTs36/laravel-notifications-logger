@@ -8,7 +8,6 @@ use ArtARTs36\LaravelNotificationsLogger\Resources\MessageResource;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Routing\Controller;
 
 class MessageController extends Controller

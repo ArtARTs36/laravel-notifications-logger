@@ -57,7 +57,7 @@ class Logger
             $message->id,
             $attachment->fileName,
             $attachment->encode(),
-            $attachment->getMime()
+            $attachment->mime
         );
     }
 

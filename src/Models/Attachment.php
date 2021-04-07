@@ -27,4 +27,6 @@ class Attachment extends Model
         self::FIELD_ENCODED_BODY,
         self::FIELD_MIME,
     ];
+
+    protected $table = 'log_notification_attachments';
 }

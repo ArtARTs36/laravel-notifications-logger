@@ -47,7 +47,7 @@ class MessageSentHandler
                 continue;
             }
 
-            $this->logger->saveAttachment($message, $attachment);
+            $this->logger->saveAttachment($message, $attachment, $a);
         }
     }
 

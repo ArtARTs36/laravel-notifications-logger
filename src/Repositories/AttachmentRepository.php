@@ -10,9 +10,10 @@ class AttachmentRepository
     /**
      * @return Attachment|Model
      */
-    public function create(int $messageId, string $name, string $body, string $mime): Attachment
+    public function create(string $contentId, int $messageId, string $name, string $body, string $mime): Attachment
     {
         return Attachment::query()->create([
+            Attachment::FIELD_CONTENT_ID => $contentId,
             Attachment::FIELD_MESSAGE_ID => $messageId,
             Attachment::FIELD_FILE_NAME => $name,
             Attachment::FIELD_ENCODED_BODY => $body,

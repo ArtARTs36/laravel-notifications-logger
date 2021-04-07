@@ -20,6 +20,7 @@ class CreateLogNotificationAttachmentsTable extends Migration
             $table->string('file_name');
             $table->string('encoded_body');
             $table->string('mime');
+            $table->string('content_id');
 
             $table->timestamps();
         });

@@ -3,9 +3,15 @@
 namespace ArtARTs36\LaravelNotificationsLogger\Services;
 
 use ArtARTs36\LaravelNotificationsLogger\Models\Attachment;
+use ArtARTs36\LaravelNotificationsLogger\Models\Message;
 
 class BodyParser
 {
+    public function parseMessage(Message $message): string
+    {
+        return $this->parse($message->body, $message->attachments->all());
+    }
+
     /**
      * @param array<Attachment> $attachments
      */
@@ -18,7 +24,7 @@ class BodyParser
         $replaces = [];
 
         foreach ($attachments as $attachment) {
-            $replaces[$attachment->content_id] = 'data:image/png;base64,'. $attachment->encoded_body;
+            $replaces[$attachment->content_id] = 'data:'. $attachment->mime . ';base64,'. $attachment->encoded_body;
         }
 
         //

@@ -37,4 +37,13 @@ class MessageRepository
             })
             ->paginate($count, ['*'], 'MessagesList', $page);
     }
+
+    /**
+     * @return Message|Model
+     */
+    public function findOrFail(int $id): Message
+    {
+        return Message::query()
+            ->findOrFail($id);
+    }
 }

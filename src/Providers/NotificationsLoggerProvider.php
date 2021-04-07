@@ -3,6 +3,7 @@
 namespace ArtARTs36\LaravelNotificationsLogger\Providers;
 
 use ArtARTs36\LaravelNotificationsLogger\Services\SystemNameSelector;
+use Illuminate\Database\Eloquent\Factory as EloquentFactory;
 use Illuminate\Support\ServiceProvider;
 
 class NotificationsLoggerProvider extends ServiceProvider
@@ -19,6 +20,7 @@ class NotificationsLoggerProvider extends ServiceProvider
             $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
 
             $this->mergeConfigFrom($configPath, 'notifications_logger');
+            $this->registerFactories();
         }
 
         $this->registerSystemNameSelector();
@@ -31,5 +33,13 @@ class NotificationsLoggerProvider extends ServiceProvider
         $this->app->singleton(SystemNameSelector::class, function () {
             return new SystemNameSelector(config()->get('notifications_logger.system_mapping.subject_system', []));
         });
+    }
+
+    protected function registerFactories(): void
+    {
+        $this
+            ->app
+            ->make(EloquentFactory::class)
+            ->load(__DIR__ . '/../../database/factories');
     }
 }

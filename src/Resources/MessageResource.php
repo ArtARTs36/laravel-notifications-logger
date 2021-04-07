@@ -15,10 +15,7 @@ class MessageResource extends JsonResource
     public function toArray($request): array
     {
         return array_merge(parent::toArray($request), [
-            Message::FIELD_BODY => app(BodyParser::class)->parse(
-                $this->resource->body,
-                $this->resource->attachments->all(),
-            ),
+            Message::FIELD_BODY => app(BodyParser::class)->parseMessage($this->resource),
         ]);
     }
 }

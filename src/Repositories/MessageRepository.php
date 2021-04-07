@@ -50,6 +50,7 @@ class MessageRepository
     public function findOrFail(int $id): Message
     {
         return Message::query()
+            ->with(Message::RELATION_ATTACHMENTS)
             ->findOrFail($id);
     }
 

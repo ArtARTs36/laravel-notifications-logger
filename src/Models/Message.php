@@ -26,6 +26,7 @@ class Message extends Model
     public const FIELD_SYSTEM_ID = 'system_id';
 
     public const RELATION_SYSTEM = 'system';
+    public const RELATION_ATTACHMENTS = 'attachments';
 
     protected $table = 'log_notification_messages';
 

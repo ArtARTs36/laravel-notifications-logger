@@ -43,11 +43,11 @@ class MessageSentHandler
     protected function applyAttachments(Message $message, array $attachments): void
     {
         foreach ($attachments as $attachment) {
-            if (mb_strpos($attachment->getMime(), 'image') !== false) {
+            if (mb_strpos($attachment->getMime(), 'image') === false) {
                 continue;
             }
 
-            $this->logger->saveAttachment($message, $attachment, $a);
+            $this->logger->saveAttachment($message, $attachment, $attachment->contentId);
         }
     }
 

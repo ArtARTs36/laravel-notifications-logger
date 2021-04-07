@@ -50,10 +50,10 @@ class Logger
         );
     }
 
-    public function saveAttachment(Message $message, AttachmentData $attachment, string $contentId): Attachment
+    public function saveAttachment(Message $message, AttachmentData $attachment): Attachment
     {
         return $this->attachments->create(
-            $contentId,
+            $attachment->contentId,
             $message->id,
             $attachment->fileName,
             $attachment->encode(),

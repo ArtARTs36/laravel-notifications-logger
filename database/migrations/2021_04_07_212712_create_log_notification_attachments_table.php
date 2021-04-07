@@ -18,7 +18,7 @@ class CreateLogNotificationAttachmentsTable extends Migration
 
             $table->unsignedBigInteger('message_id');
             $table->string('file_name');
-            $table->string('encoded_body');
+            $table->text('encoded_body');
             $table->string('mime');
             $table->string('content_id');
 

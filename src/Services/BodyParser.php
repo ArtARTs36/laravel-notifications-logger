@@ -24,7 +24,9 @@ class BodyParser
         $replaces = [];
 
         foreach ($attachments as $attachment) {
-            $replaces['cid:'. $attachment->content_id] = 'data:'. $attachment->mime . ';base64,'. $attachment->encoded_body;
+            $replaces['cid:'. $attachment->content_id] = 'data:'. $attachment->mime
+                . ';base64,'
+                . $attachment->encoded_body;
         }
 
         //

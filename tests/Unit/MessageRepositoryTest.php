@@ -27,4 +27,23 @@ class MessageRepositoryTest extends TestCase
 
         self::assertCount(10, $repo->paginate(new MessagePagination(10, 1)));
     }
+
+    /**
+     * @covers \ArtARTs36\LaravelNotificationsLogger\Repositories\MessageRepository::getAllRecipients
+     */
+    public function testGetAllRecipients(): void
+    {
+        /** @var MessageRepository $repo */
+        $repo = $this->app->make(MessageRepository::class);
+
+        //
+
+        self::assertCount(0, $repo->getAllRecipients());
+
+        //
+
+        factory(Message::class, 4)->create();
+
+        self::assertCount(4, $repo->getAllRecipients());
+    }
 }

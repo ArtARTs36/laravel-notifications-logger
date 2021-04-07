@@ -34,4 +34,24 @@ class MessageTest extends TestCase
 
         $request($message->id)->assertStatus(200);
     }
+
+    /**
+     * @covers \ArtARTs36\LaravelNotificationsLogger\Http\Controllers\MessageController::recipients
+     */
+    public function testRecipients(): void
+    {
+        $this->getJson('messages/recipients')->assertStatus(200)->assertJson([
+            'data' => [],
+        ]);
+
+        //
+
+        $msg = factory(Message::class)->create();
+
+        $this->getJson('messages/recipients')->assertStatus(200)->assertJson([
+            'data' => [
+                $msg->recipient,
+            ],
+        ]);
+    }
 }

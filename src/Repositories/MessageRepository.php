@@ -7,6 +7,7 @@ use ArtARTs36\LaravelNotificationsLogger\Models\Message;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class MessageRepository
 {
@@ -50,5 +51,17 @@ class MessageRepository
     {
         return Message::query()
             ->findOrFail($id);
+    }
+
+    /**
+     * @return Collection|iterable<string>
+     */
+    public function getAllRecipients(): Collection
+    {
+        return Message::query()
+            ->toBase()
+            ->distinct()
+            ->get([Message::FIELD_RECIPIENT])
+            ->pluck(Message::FIELD_RECIPIENT);
     }
 }

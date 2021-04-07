@@ -63,7 +63,7 @@ class Logger
 
     protected function getSystem(MessageData $message): ?System
     {
-        $name = $this->systemName->select($message ?? $message->subject);
+        $name = $this->systemName->select($message->subject);
 
         if ($name === null) {
             return null;

@@ -3,12 +3,10 @@
 namespace ArtARTs36\LaravelNotificationsLogger\Http\Controllers;
 
 use ArtARTs36\LaravelNotificationsLogger\Data\MessagePagination;
-use ArtARTs36\LaravelNotificationsLogger\Models\Message;
 use ArtARTs36\LaravelNotificationsLogger\Repositories\MessageRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Routing\Controller;
 

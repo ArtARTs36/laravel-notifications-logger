@@ -2,9 +2,12 @@
 
 namespace ArtARTs36\LaravelNotificationsLogger\Loggers;
 
+use ArtARTs36\LaravelNotificationsLogger\Data\AttachmentData;
 use ArtARTs36\LaravelNotificationsLogger\Data\MessageData;
+use ArtARTs36\LaravelNotificationsLogger\Models\Attachment;
 use ArtARTs36\LaravelNotificationsLogger\Models\Message;
 use ArtARTs36\LaravelNotificationsLogger\Models\System;
+use ArtARTs36\LaravelNotificationsLogger\Repositories\AttachmentRepository;
 use ArtARTs36\LaravelNotificationsLogger\Repositories\MessageRepository;
 use ArtARTs36\LaravelNotificationsLogger\Repositories\SystemRepository;
 use ArtARTs36\LaravelNotificationsLogger\Services\SystemNameSelector;
@@ -20,11 +23,18 @@ class Logger
 
     protected $messages;
 
-    public function __construct(SystemNameSelector $name, SystemRepository $systemRepo, MessageRepository $messages)
-    {
+    protected $attachments;
+
+    public function __construct(
+        SystemNameSelector $name,
+        SystemRepository $systemRepo,
+        MessageRepository $messages,
+        AttachmentRepository $attachments
+    ) {
         $this->systemName = $name;
         $this->systemRepo = $systemRepo;
         $this->messages = $messages;
+        $this->attachments = $attachments;
     }
 
     public function save(MessageData $message): Message
@@ -37,6 +47,16 @@ class Logger
             $message->recipient,
             $message->body,
             $system ? $system->id : null
+        );
+    }
+
+    public function saveAttachment(Message $message, AttachmentData $attachment): Attachment
+    {
+        return $this->attachments->create(
+            $message->id,
+            $attachment->fileName,
+            $attachment->encode(),
+            $attachment->getMime()
         );
     }
 

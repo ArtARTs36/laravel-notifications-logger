@@ -2,6 +2,7 @@
 
 namespace ArtARTs36\LaravelNotificationsLogger\Repositories;
 
+use ArtARTs36\LaravelNotificationsLogger\Data\MessagePagination;
 use ArtARTs36\LaravelNotificationsLogger\Models\Message;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
@@ -28,14 +29,18 @@ class MessageRepository
         ]);
     }
 
-    public function paginate(int $count, int $page, ?int $systemId = null): LengthAwarePaginator
+    public function paginate(MessagePagination $pagination): LengthAwarePaginator
     {
         return Message::query()
             ->with(Message::RELATION_SYSTEM)
-            ->when($systemId !== null, function (Builder $query) use ($systemId) {
-                $query->where(Message::FIELD_SYSTEM_ID, $systemId);
+            ->orderBy(Message::CREATED_AT, $pagination->dateSort)
+            ->when($pagination->systemId !== null, function (Builder $query) use ($pagination) {
+                $query->where(Message::FIELD_SYSTEM_ID, $pagination->systemId);
             })
-            ->paginate($count, ['*'], 'MessagesList', $page);
+            ->when($pagination->recipient !== null, function (Builder $query) use ($pagination) {
+                $query->where(Message::FIELD_RECIPIENT, $pagination->recipient);
+            })
+            ->paginate($pagination->limit, ['*'], 'MessagesList', $pagination->page);
     }
 
     /**

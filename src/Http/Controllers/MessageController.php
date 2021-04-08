@@ -31,7 +31,7 @@ class MessageController extends Controller
                 $request->input('system_id'),
                 $request->input('date_sort', 'desc'),
                 $request->input('recipient')
-            ),
+            )
         );
     }
 

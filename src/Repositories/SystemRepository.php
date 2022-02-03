@@ -10,6 +10,7 @@ class SystemRepository
 {
     public function findOrCreate(string $title): System
     {
+        /** @var System|null $system */
         $system = System::query()->where(System::FIELD_TITLE, $title)->first();
 
         if ($system) {

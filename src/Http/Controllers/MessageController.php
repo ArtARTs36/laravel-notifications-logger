@@ -6,6 +6,7 @@ use ArtARTs36\LaravelNotificationsLogger\Data\MessagePagination;
 use ArtARTs36\LaravelNotificationsLogger\Repositories\MessageRepository;
 use ArtARTs36\LaravelNotificationsLogger\Resources\MessageResource;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -15,12 +16,16 @@ class MessageController extends Controller
     /** @var MessageRepository */
     protected $repo;
 
+    /** @var ResponseFactory */
+    protected $response;
+
     /**
      * @codeCoverageIgnore
      */
-    public function __construct(MessageRepository $repo)
+    public function __construct(MessageRepository $repo, ResponseFactory $response)
     {
         $this->repo = $repo;
+        $this->response = $response;
     }
 
     public function index(Request $request): LengthAwarePaginator
@@ -43,7 +48,7 @@ class MessageController extends Controller
 
     public function recipients(): JsonResponse
     {
-        return response()->json([
+        return $this->response->json([
             'data' => $this->repo->getAllRecipients(),
         ]);
     }

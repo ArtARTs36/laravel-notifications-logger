@@ -17,3 +17,24 @@ This PHP package provides logging all notifications from your Laravel Applicatio
 - Run: `php artisan vendor:publish --tag=notifications_logger`
 
 - Run `php artisan migrate`
+
+### Configuration
+
+#### Services Configuration
+
+Path to package configuration: `config/notifications_logger.php`.
+
+Logger considers your application's services ([System](./src/Models/System.php)).
+
+You can configure service recognition in section "**system_mapping**".
+
+**Key** is regular expression for notification title.
+**Value** is service name.
+
+Example: 
+
+    'system_mapping' => [
+        'subject_system' => [
+            '/([a-z]*), you have to account for yesterday/i' => 'time-tracking-system',
+        ],
+    ],

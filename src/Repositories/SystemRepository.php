@@ -8,9 +8,6 @@ use Illuminate\Support\Str;
 
 class SystemRepository
 {
-    /**
-     * @return System&Model
-     */
     public function findOrCreate(string $title): System
     {
         $system = System::query()->where(System::FIELD_TITLE, $title)->first();

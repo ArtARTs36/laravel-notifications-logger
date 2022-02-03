@@ -1,0 +1,9 @@
+parameters:
+
+    paths:
+        - src
+
+    level: 3
+
+    ignoreErrors:
+        - '#but returns Illuminate\\Database\\Eloquent\\Builder|Illuminate\\Database\\Eloquent\\Model#'

@@ -40,7 +40,7 @@
             "./vendor/bin/phpcs --standard=PSR2 tests/"
         ],
         "stat-analyse": [
-            "./vendor/bin/phpstan analyse -l 2 src"
+            "./vendor/bin/phpstan analyse"
         ]
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 class RouteProvider extends RouteServiceProvider
 {
+    /** @var string */
     protected $namespace = '\ArtARTs36\LaravelNotificationsLogger\Http\Controllers';
 
     public function map(): void

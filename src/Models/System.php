@@ -18,6 +18,7 @@ class System extends Model
 
     protected $table = 'log_notification_systems';
 
+    /** @var string[] */
     protected $fillable = [
         self::FIELD_TITLE,
         self::FIELD_SLUG,

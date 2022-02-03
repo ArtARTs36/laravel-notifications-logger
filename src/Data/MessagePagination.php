@@ -7,14 +7,19 @@ class MessagePagination
     public const DATE_SORT_ASC = 'asc';
     public const DATE_SORT_DESC = 'desc';
 
+    /** @var int */
     public $limit;
 
+    /** @var int */
     public $page;
 
+    /** @var int|null */
     public $systemId;
 
+    /** @var string */
     public $dateSort;
 
+    /** @var string|null */
     public $recipient;
 
     public function __construct(

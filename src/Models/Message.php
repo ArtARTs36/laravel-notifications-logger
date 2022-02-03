@@ -30,6 +30,7 @@ class Message extends Model
 
     protected $table = 'log_notification_messages';
 
+    /** @var string[] */
     protected $fillable = [
         self::FIELD_SUBJECT,
         self::FIELD_SENDER,

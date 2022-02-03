@@ -11,8 +11,10 @@ use Illuminate\Mail\Events\MessageSent;
 
 class MessageSentHandler
 {
+    /** @var Logger */
     protected $logger;
 
+    /** @var Swift */
     protected $swift;
 
     public function __construct(Logger $logger, Swift $swift)
@@ -66,6 +68,9 @@ class MessageSentHandler
         return '';
     }
 
+    /**
+     * @param array<mixed> $array
+     */
     protected function parseValueFromArray(array $array): ?string
     {
         $key = array_key_first($array);

@@ -12,6 +12,7 @@ use Illuminate\Routing\Controller;
 
 class MessageController extends Controller
 {
+    /** @var MessageRepository */
     protected $repo;
 
     /**

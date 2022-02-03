@@ -9,7 +9,7 @@ class RouteProvider extends RouteServiceProvider
 {
     protected $namespace = '\ArtARTs36\LaravelNotificationsLogger\Http\Controllers';
 
-    public function map()
+    public function map(): void
     {
         $this->mapApiRoutes();
     }

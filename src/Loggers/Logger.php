@@ -14,15 +14,19 @@ use ArtARTs36\LaravelNotificationsLogger\Services\SystemNameSelector;
 
 class Logger
 {
+    /** @var SystemNameSelector */
     protected $systemName;
 
     /** @var array<string, System> */
     protected $systems = [];
 
+    /** @var SystemRepository */
     protected $systemRepo;
 
+    /** @var MessageRepository */
     protected $messages;
 
+    /** @var AttachmentRepository */
     protected $attachments;
 
     public function __construct(

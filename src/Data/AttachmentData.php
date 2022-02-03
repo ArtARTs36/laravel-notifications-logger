@@ -6,12 +6,16 @@ use League\Flysystem\Util\MimeType;
 
 class AttachmentData
 {
+    /** @var string */
     public $contentId;
 
+    /** @var string */
     public $fileName;
 
+    /** @var string */
     public $body;
 
+    /** @var string */
     public $mime;
 
     public function __construct(string $contentId, string $fileName, string $body)

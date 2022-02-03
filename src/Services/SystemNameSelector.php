@@ -4,6 +4,7 @@ namespace ArtARTs36\LaravelNotificationsLogger\Services;
 
 class SystemNameSelector
 {
+    /** @var array<string, string> */
     protected $systemsDict = [];
 
     /**

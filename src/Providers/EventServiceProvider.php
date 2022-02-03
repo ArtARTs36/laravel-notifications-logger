@@ -8,6 +8,7 @@ use Illuminate\Mail\Events\MessageSent;
 
 class EventServiceProvider extends AbstractEventProvider
 {
+    /** @var array<class-string, array<class-string>> */
     protected $listen = [
         MessageSent::class => [
             MessageSentHandler::class,

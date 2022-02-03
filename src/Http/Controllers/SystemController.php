@@ -9,6 +9,9 @@ use Illuminate\Routing\Controller;
 
 class SystemController extends Controller
 {
+    /**
+     * @return AnonymousResourceCollection&iterable<System>
+     */
     public function index(): AnonymousResourceCollection
     {
         return JsonResource::collection(System::all());

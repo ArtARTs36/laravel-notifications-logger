@@ -11,9 +11,6 @@ use Illuminate\Support\Collection;
 
 class MessageRepository
 {
-    /**
-     * @return Message|Model
-     */
     public function create(
         string $subject,
         string $sender,
@@ -44,9 +41,6 @@ class MessageRepository
             ->paginate($pagination->limit, ['*'], 'MessagesList', $pagination->page);
     }
 
-    /**
-     * @return Message|Model
-     */
     public function findOrFail(int $id): Message
     {
         return Message::query()
@@ -55,7 +49,7 @@ class MessageRepository
     }
 
     /**
-     * @return Collection|iterable<string>
+     * @return Collection&iterable<string>
      */
     public function getAllRecipients(): Collection
     {

@@ -6,5 +6,6 @@
 /.gitignore         export-ignore
 /phpunit.xml        export-ignore
 /tests              export-ignore
-/.github              export-ignore
-/readme.md              export-ignore
+/.github            export-ignore
+/readme.md          export-ignore
+phpstan.neon        export-ignore

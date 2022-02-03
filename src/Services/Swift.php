@@ -13,7 +13,7 @@ class Swift
     {
         $attachments = [];
 
-        foreach ($message->getChildren() ?? [] as $child) {
+        foreach ($message->getChildren() ?? [] as $child) { // @phpstan-ignore-line
             $fileName = $this->getFileName($child);
 
             if (! $fileName) {
@@ -30,7 +30,7 @@ class Swift
     {
         $disposition = $entity->getHeaders()->get('Content-Disposition');
 
-        if (! $disposition) {
+        if (! $disposition instanceof \Swift_Mime_Headers_ParameterizedHeader) {
             return null;
         }
 

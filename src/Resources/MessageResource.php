@@ -12,6 +12,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
  */
 class MessageResource extends JsonResource
 {
+    /**
+     * @return array<string, string>
+     */
     public function toArray($request): array
     {
         return array_merge(parent::toArray($request), [

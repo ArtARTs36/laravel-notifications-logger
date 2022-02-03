@@ -20,6 +20,7 @@ class Attachment extends Model
     public const FIELD_ENCODED_BODY = 'encoded_body';
     public const FIELD_MIME = 'mime';
 
+    /** @var string[] */
     protected $fillable = [
         self::FIELD_CONTENT_ID,
         self::FIELD_MESSAGE_ID,

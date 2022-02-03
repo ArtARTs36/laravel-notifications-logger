@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class AttachmentRepository
 {
     /**
-     * @return Attachment|Model
+     * Create new Attachment.
      */
     public function create(string $contentId, int $messageId, string $name, string $body, string $mime): Attachment
     {

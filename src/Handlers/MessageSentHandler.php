@@ -23,11 +23,11 @@ class MessageSentHandler
 
     public function handle(MessageSent $event): void
     {
-        foreach ($event->message->getTo() ?? [] as $toMail => $toName) {
+        foreach ($event->message->getTo() ?? [] as $toMail => $toName) { // @phpstan-ignore-line
             $message = $this->logger->save(
                 new MessageData(
-                    $event->message->getSubject() ?? '',
-                    $event->message->getBody() ?? '',
+                    $event->message->getSubject() ?? '', // @phpstan-ignore-line
+                    $event->message->getBody() ?? '', // @phpstan-ignore-line
                     is_string($toMail) ? $toMail : $toName,
                     $this->parseSender($event->message)
                 )

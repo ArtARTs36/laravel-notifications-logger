@@ -3,7 +3,6 @@
 namespace ArtARTs36\LaravelNotificationsLogger\Services;
 
 use ArtARTs36\LaravelNotificationsLogger\Data\AttachmentData;
-use Symfony\Component\Mime\Header\ParameterizedHeader;
 
 class Swift
 {
@@ -14,7 +13,7 @@ class Swift
     {
         $attachments = [];
 
-        foreach ($message->getChildren() ?? [] as $child) {
+        foreach ($message->getChildren() ?? [] as $child) { // @phpstan-ignore-line
             $fileName = $this->getFileName($child);
 
             if (! $fileName) {
@@ -31,7 +30,7 @@ class Swift
     {
         $disposition = $entity->getHeaders()->get('Content-Disposition');
 
-        if (! $disposition instanceof ParameterizedHeader) {
+        if (! $disposition instanceof \Swift_Mime_Headers_ParameterizedHeader) {
             return null;
         }
 

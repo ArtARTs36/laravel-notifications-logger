@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class SystemRepository
 {
     /**
-     * @return System|Model
+     * @return System&Model
      */
     public function findOrCreate(string $title): System
     {

@@ -3,6 +3,7 @@
 namespace ArtARTs36\LaravelNotificationsLogger\Services;
 
 use ArtARTs36\LaravelNotificationsLogger\Data\AttachmentData;
+use Symfony\Component\Mime\Header\ParameterizedHeader;
 
 class Swift
 {
@@ -30,7 +31,7 @@ class Swift
     {
         $disposition = $entity->getHeaders()->get('Content-Disposition');
 
-        if (! $disposition) {
+        if (! $disposition instanceof ParameterizedHeader) {
             return null;
         }
 

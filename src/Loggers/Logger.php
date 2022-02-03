@@ -16,7 +16,7 @@ class Logger
 {
     protected $systemName;
 
-    /** @var <string, System> */
+    /** @var array<string, System> */
     protected $systems = [];
 
     protected $systemRepo;

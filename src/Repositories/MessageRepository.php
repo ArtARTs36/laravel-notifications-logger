@@ -12,7 +12,7 @@ use Illuminate\Support\Collection;
 class MessageRepository
 {
     /**
-     * @return Message|Model
+     * @return Message&Model
      */
     public function create(
         string $subject,
@@ -45,7 +45,7 @@ class MessageRepository
     }
 
     /**
-     * @return Message|Model
+     * @return Message&Model
      */
     public function findOrFail(int $id): Message
     {
@@ -55,7 +55,7 @@ class MessageRepository
     }
 
     /**
-     * @return Collection|iterable<string>
+     * @return Collection&iterable<string>
      */
     public function getAllRecipients(): Collection
     {

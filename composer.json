@@ -1,6 +1,6 @@
 {
     "name": "artarts36/laravel-notifications-logger",
-    "description": "",
+    "description": "Notifications Logger for Laravel",
     "type": "library",
     "require": {
         "laravel/framework": "5.* || 6.*",

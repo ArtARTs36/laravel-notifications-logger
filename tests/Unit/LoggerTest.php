@@ -4,7 +4,7 @@ namespace ArtARTs36\LaravelNotificationsLogger\Tests\Unit;
 
 use ArtARTs36\LaravelNotificationsLogger\Data\MessageData;
 use ArtARTs36\LaravelNotificationsLogger\Loggers\Logger;
-use ArtARTs36\LaravelNotificationsLogger\Services\SystemNameSelector;
+use ArtARTs36\LaravelNotificationsLogger\Operation\System\NameSelector;
 use ArtARTs36\LaravelNotificationsLogger\Tests\TestCase;
 
 class LoggerTest extends TestCase
@@ -37,7 +37,7 @@ class LoggerTest extends TestCase
 
         /** @var Logger $logger */
         $logger = $this->app->make(Logger::class, [
-            'name' => new SystemNameSelector([
+            'name' => new NameSelector([
                 '/test-subject/i' => 'system-1',
             ])
         ]);

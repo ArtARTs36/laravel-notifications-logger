@@ -3,18 +3,20 @@
 namespace ArtARTs36\LaravelNotificationsLogger\Loggers;
 
 use ArtARTs36\LaravelNotificationsLogger\Contracts\MessageRepository;
+use ArtARTs36\LaravelNotificationsLogger\Contracts\SystemNameSelector;
 use ArtARTs36\LaravelNotificationsLogger\Data\AttachmentData;
 use ArtARTs36\LaravelNotificationsLogger\Data\MessageData;
 use ArtARTs36\LaravelNotificationsLogger\Models\Attachment;
 use ArtARTs36\LaravelNotificationsLogger\Models\Message;
 use ArtARTs36\LaravelNotificationsLogger\Models\System;
+use ArtARTs36\LaravelNotificationsLogger\Operation\System\Envelope;
+use ArtARTs36\LaravelNotificationsLogger\Operation\System\NameSelector;
 use ArtARTs36\LaravelNotificationsLogger\Repositories\AttachmentRepository;
 use ArtARTs36\LaravelNotificationsLogger\Repositories\SystemRepository;
-use ArtARTs36\LaravelNotificationsLogger\Services\SystemNameSelector;
 
 class Logger
 {
-    /** @var SystemNameSelector */
+    /** @var NameSelector */
     protected $systemName;
 
     /** @var array<string, System> */
@@ -30,9 +32,9 @@ class Logger
     protected $attachments;
 
     public function __construct(
-        SystemNameSelector $name,
-        SystemRepository $systemRepo,
-        MessageRepository $messages,
+        SystemNameSelector         $name,
+        SystemRepository     $systemRepo,
+        MessageRepository    $messages,
         AttachmentRepository $attachments
     ) {
         $this->systemName = $name;
@@ -67,7 +69,7 @@ class Logger
 
     protected function getSystem(MessageData $message): ?System
     {
-        $name = $this->systemName->select($message->subject);
+        $name = $this->systemName->select(new Envelope($message->subject, $message->body));
 
         if ($name === null) {
             return null;

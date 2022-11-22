@@ -3,7 +3,7 @@
 namespace ArtARTs36\LaravelNotificationsLogger\Providers;
 
 use ArtARTs36\LaravelNotificationsLogger\Contracts\MessageRepository;
-use ArtARTs36\LaravelNotificationsLogger\Services\SystemNameSelector;
+use ArtARTs36\LaravelNotificationsLogger\Operation\System\NameSelector;
 use Illuminate\Database\Eloquent\Factory as EloquentFactory;
 use Illuminate\Support\ServiceProvider;
 
@@ -35,8 +35,8 @@ class NotificationsLoggerProvider extends ServiceProvider
 
     protected function registerSystemNameSelector(): void
     {
-        $this->app->singleton(SystemNameSelector::class, function () {
-            return new SystemNameSelector(config()->get('notifications_logger.system_mapping.subject_system', []));
+        $this->app->singleton(NameSelector::class, function () {
+            return new NameSelector(config()->get('notifications_logger.system_mapping.subject_system', []));
         });
     }
 

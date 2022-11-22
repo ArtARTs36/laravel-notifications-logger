@@ -1,8 +1,10 @@
 <?php
 
-namespace ArtARTs36\LaravelNotificationsLogger\Services;
+namespace ArtARTs36\LaravelNotificationsLogger\Operation\System;
 
-class SystemNameSelector
+use ArtARTs36\LaravelNotificationsLogger\Contracts\SystemNameSelector;
+
+class NameSelector implements SystemNameSelector
 {
     /** @var array<string, string> */
     protected $systemsDict = [];
@@ -16,10 +18,10 @@ class SystemNameSelector
         $this->systemsDict = $systemsDict;
     }
 
-    public function select(string $subjectOrNotification): ?string
+    public function select(Envelope $envelope): ?string
     {
         foreach ($this->systemsDict as $pattern => $systemName) {
-            if (@preg_match($pattern, $subjectOrNotification)) {
+            if (@preg_match($pattern, $envelope->body)) {
                 return $systemName;
             }
         }

@@ -2,8 +2,8 @@
 
 namespace ArtARTs36\LaravelNotificationsLogger\Http\Controllers;
 
+use ArtARTs36\LaravelNotificationsLogger\Contracts\MessageRepository;
 use ArtARTs36\LaravelNotificationsLogger\Data\MessagePagination;
-use ArtARTs36\LaravelNotificationsLogger\Repositories\MessageRepository;
 use ArtARTs36\LaravelNotificationsLogger\Resources\MessageResource;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\Routing\ResponseFactory;

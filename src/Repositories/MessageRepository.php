@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
-class MessageRepository
+class MessageRepository implements \ArtARTs36\LaravelNotificationsLogger\Contracts\MessageRepository
 {
     public function create(
         string $subject,

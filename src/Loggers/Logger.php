@@ -2,13 +2,13 @@
 
 namespace ArtARTs36\LaravelNotificationsLogger\Loggers;
 
+use ArtARTs36\LaravelNotificationsLogger\Contracts\MessageRepository;
 use ArtARTs36\LaravelNotificationsLogger\Data\AttachmentData;
 use ArtARTs36\LaravelNotificationsLogger\Data\MessageData;
 use ArtARTs36\LaravelNotificationsLogger\Models\Attachment;
 use ArtARTs36\LaravelNotificationsLogger\Models\Message;
 use ArtARTs36\LaravelNotificationsLogger\Models\System;
 use ArtARTs36\LaravelNotificationsLogger\Repositories\AttachmentRepository;
-use ArtARTs36\LaravelNotificationsLogger\Repositories\MessageRepository;
 use ArtARTs36\LaravelNotificationsLogger\Repositories\SystemRepository;
 use ArtARTs36\LaravelNotificationsLogger\Services\SystemNameSelector;
 

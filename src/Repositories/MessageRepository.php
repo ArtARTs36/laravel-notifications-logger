@@ -6,7 +6,6 @@ use ArtARTs36\LaravelNotificationsLogger\Data\MessagePagination;
 use ArtARTs36\LaravelNotificationsLogger\Models\Message;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
 class MessageRepository implements \ArtARTs36\LaravelNotificationsLogger\Contracts\MessageRepository

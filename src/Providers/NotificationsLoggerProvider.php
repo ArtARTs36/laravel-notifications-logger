@@ -2,12 +2,17 @@
 
 namespace ArtARTs36\LaravelNotificationsLogger\Providers;
 
+use ArtARTs36\LaravelNotificationsLogger\Contracts\MessageRepository;
 use ArtARTs36\LaravelNotificationsLogger\Services\SystemNameSelector;
 use Illuminate\Database\Eloquent\Factory as EloquentFactory;
 use Illuminate\Support\ServiceProvider;
 
 class NotificationsLoggerProvider extends ServiceProvider
 {
+    public $bindings = [
+        MessageRepository::class => \ArtARTs36\LaravelNotificationsLogger\Repositories\MessageRepository::class,
+    ];
+
     public function register()
     {
         if ($this->app->runningInConsole()) {

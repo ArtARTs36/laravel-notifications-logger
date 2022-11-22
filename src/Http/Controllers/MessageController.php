@@ -4,6 +4,7 @@ namespace ArtARTs36\LaravelNotificationsLogger\Http\Controllers;
 
 use ArtARTs36\LaravelNotificationsLogger\Contracts\MessageRepository;
 use ArtARTs36\LaravelNotificationsLogger\Data\MessagePagination;
+use ArtARTs36\LaravelNotificationsLogger\Operation\Message\MessageViewer;
 use ArtARTs36\LaravelNotificationsLogger\Resources\MessageResource;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -41,9 +42,9 @@ class MessageController extends Controller
         );
     }
 
-    public function show(int $messageId): MessageResource
+    public function show(int $messageId, MessageViewer $viewer): MessageResource
     {
-        return new MessageResource($this->repo->findOrFail($messageId));
+        return new MessageResource($viewer->view($this->repo->findOrFail($messageId)));
     }
 
     public function recipients(): JsonResponse

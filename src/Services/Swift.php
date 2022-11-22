@@ -20,7 +20,7 @@ class Swift
                 continue;
             }
 
-            $attachments[] = new AttachmentData($child->getId(), $fileName, $child->getBody());
+            $attachments[] = AttachmentData::make($child->getId(), $fileName, $child->getBody());
         }
 
         return $attachments;

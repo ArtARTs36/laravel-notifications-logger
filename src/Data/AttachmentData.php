@@ -18,12 +18,22 @@ class AttachmentData
     /** @var string */
     public $mime;
 
-    public function __construct(string $contentId, string $fileName, string $body)
+    public function __construct(string $contentId, string $fileName, string $body, string $mime)
     {
         $this->contentId = $contentId;
         $this->fileName = $fileName;
         $this->body = $body;
-        $this->mime = MimeType::detectByContent($this->body);
+        $this->mime = $mime;
+    }
+
+    public static function make(string $contentId, string $fileName, string $body): self
+    {
+        return new self(
+            $contentId,
+            $fileName,
+            $body,
+            MimeType::detectByContent($body)
+        );
     }
 
     public function isImage(): bool

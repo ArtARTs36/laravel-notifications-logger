@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\LaravelNotificationsLogger\Resources;
+namespace ArtARTs36\LaravelNotificationsLogger\Http\Resources;
 
 use ArtARTs36\LaravelNotificationsLogger\Models\Message;
 use ArtARTs36\LaravelNotificationsLogger\Operation\Message\MessageView;

@@ -3,7 +3,8 @@
 namespace ArtARTs36\LaravelNotificationsLogger\Operation\Message;
 
 use ArtARTs36\LaravelNotificationsLogger\Models\Message;
-use ArtARTs36\LaravelNotificationsLogger\Services\BodyParser;
+use ArtARTs36\LaravelNotificationsLogger\Operation\Body\Envelope;
+use ArtARTs36\LaravelNotificationsLogger\Contracts\BodyParser;
 
 class MessageViewer
 {
@@ -20,7 +21,7 @@ class MessageViewer
     {
         return new MessageView(
             $message,
-            $this->bodyParser->parseMessage($message)
+            $this->bodyParser->parse(new Envelope($message->body, $message->attachments->all()))
         );
     }
 }

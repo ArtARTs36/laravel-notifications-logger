@@ -5,7 +5,6 @@ namespace ArtARTs36\LaravelNotificationsLogger\Event;
 use ArtARTs36\LaravelNotificationsLogger\Data\AttachmentData;
 use ArtARTs36\LaravelNotificationsLogger\Data\MessageData;
 use ArtARTs36\LaravelNotificationsLogger\Loggers\Logger;
-use ArtARTs36\LaravelNotificationsLogger\Models\Message;
 use ArtARTs36\LaravelNotificationsLogger\Operation\Swift\AttachmentExtractor;
 use Illuminate\Mail\Events\MessageSent;
 
@@ -26,31 +25,27 @@ class MessageSentListener
     public function handle(MessageSent $event): void
     {
         foreach ($event->message->getTo() ?? [] as $toMail => $toName) { // @phpstan-ignore-line
-            $message = $this->logger->save(
+            $this->logger->save(
                 new MessageData(
                     $event->message->getSubject() ?? '', // @phpstan-ignore-line
                     $event->message->getBody() ?? '', // @phpstan-ignore-line
                     is_string($toMail) ? $toMail : $toName,
-                    $this->parseSender($event->message)
+                    $this->parseSender($event->message),
+                    $this->filterAttachments($this->attachment->extract($event->message))
                 )
             );
-
-            $this->applyAttachments($message, $this->attachment->extract($event->message));
         }
     }
 
     /**
      * @param array<AttachmentData> $attachments
+     * @return array<AttachmentData>
      */
-    protected function applyAttachments(Message $message, array $attachments): void
+    protected function filterAttachments(array $attachments): array
     {
-        foreach ($attachments as $attachment) {
-            if (! $attachment->isImage()) {
-                continue;
-            }
-
-            $this->logger->saveAttachment($message, $attachment);
-        }
+        return array_filter($attachments, function (AttachmentData $data) {
+            return $data->isImage();
+        });
     }
 
     protected function parseSender(\Swift_Message $message): string

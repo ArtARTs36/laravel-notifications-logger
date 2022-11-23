@@ -43,20 +43,26 @@ class Logger
         $this->attachments = $attachments;
     }
 
-    public function save(MessageData $message): Message
+    public function save(MessageData $msgData): Message
     {
-        $system = $this->getSystem($message);
+        $system = $this->getSystem($msgData);
 
-        return $this->messages->create(
-            $message->subject,
-            $message->sender,
-            $message->recipient,
-            $message->body,
+        $message = $this->messages->create(
+            $msgData->subject,
+            $msgData->sender,
+            $msgData->recipient,
+            $msgData->body,
             $system ? $system->id : null
         );
+
+        foreach ($msgData->attachments as $attachment) {
+            $this->saveAttachment($message, $attachment);
+        }
+
+        return $message;
     }
 
-    public function saveAttachment(Message $message, AttachmentData $attachment): Attachment
+    protected function saveAttachment(Message $message, AttachmentData $attachment): Attachment
     {
         return $this->attachments->create(
             $attachment->contentId,

@@ -2,7 +2,7 @@
 
 namespace ArtARTs36\LaravelNotificationsLogger\Tests\Unit;
 
-use ArtARTs36\LaravelNotificationsLogger\Handlers\MessageSentHandler;
+use ArtARTs36\LaravelNotificationsLogger\Event\MessageSentListener;
 use ArtARTs36\LaravelNotificationsLogger\Models\Message;
 use ArtARTs36\LaravelNotificationsLogger\Tests\TestCase;
 use Illuminate\Mail\Events\MessageSent;
@@ -10,7 +10,7 @@ use Illuminate\Mail\Events\MessageSent;
 class MessageSendHandlerTest extends TestCase
 {
     /**
-     * @covers \ArtARTs36\LaravelNotificationsLogger\Handlers\MessageSentHandler::handle
+     * @covers \ArtARTs36\LaravelNotificationsLogger\Event\MessageSentListener::handle
      */
     public function testHandle(): void
     {
@@ -26,8 +26,8 @@ class MessageSendHandlerTest extends TestCase
 
         //
 
-        /** @var MessageSentHandler $handler */
-        $handler = $this->app->make(MessageSentHandler::class);
+        /** @var MessageSentListener $handler */
+        $handler = $this->app->make(MessageSentListener::class);
 
         $handler->handle($event);
 

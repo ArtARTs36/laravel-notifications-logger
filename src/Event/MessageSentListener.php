@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\LaravelNotificationsLogger\Handlers;
+namespace ArtARTs36\LaravelNotificationsLogger\Event;
 
 use ArtARTs36\LaravelNotificationsLogger\Data\AttachmentData;
 use ArtARTs36\LaravelNotificationsLogger\Data\MessageData;
@@ -9,7 +9,7 @@ use ArtARTs36\LaravelNotificationsLogger\Models\Message;
 use ArtARTs36\LaravelNotificationsLogger\Services\Swift;
 use Illuminate\Mail\Events\MessageSent;
 
-class MessageSentHandler
+class MessageSentListener
 {
     /** @var Logger */
     protected $logger;

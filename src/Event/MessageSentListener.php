@@ -6,7 +6,7 @@ use ArtARTs36\LaravelNotificationsLogger\Data\AttachmentData;
 use ArtARTs36\LaravelNotificationsLogger\Data\MessageData;
 use ArtARTs36\LaravelNotificationsLogger\Loggers\Logger;
 use ArtARTs36\LaravelNotificationsLogger\Models\Message;
-use ArtARTs36\LaravelNotificationsLogger\Services\Swift;
+use ArtARTs36\LaravelNotificationsLogger\Operation\Swift\AttachmentExtractor;
 use Illuminate\Mail\Events\MessageSent;
 
 class MessageSentListener
@@ -14,13 +14,13 @@ class MessageSentListener
     /** @var Logger */
     protected $logger;
 
-    /** @var Swift */
-    protected $swift;
+    /** @var AttachmentExtractor */
+    protected $attachment;
 
-    public function __construct(Logger $logger, Swift $swift)
+    public function __construct(Logger $logger, AttachmentExtractor $attachmentExtractor)
     {
         $this->logger = $logger;
-        $this->swift = $swift;
+        $this->attachment = $attachmentExtractor;
     }
 
     public function handle(MessageSent $event): void
@@ -35,7 +35,7 @@ class MessageSentListener
                 )
             );
 
-            $this->applyAttachments($message, $this->swift->getAttachments($event->message));
+            $this->applyAttachments($message, $this->attachment->extract($event->message));
         }
     }
 

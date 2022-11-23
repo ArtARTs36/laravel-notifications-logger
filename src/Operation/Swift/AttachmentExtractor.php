@@ -1,15 +1,15 @@
 <?php
 
-namespace ArtARTs36\LaravelNotificationsLogger\Services;
+namespace ArtARTs36\LaravelNotificationsLogger\Operation\Swift;
 
 use ArtARTs36\LaravelNotificationsLogger\Data\AttachmentData;
 
-class Swift
+class AttachmentExtractor
 {
     /**
      * @return array<AttachmentData>
      */
-    public function getAttachments(\Swift_Message $message): array
+    public function extract(\Swift_Message $message): array
     {
         $attachments = [];
 

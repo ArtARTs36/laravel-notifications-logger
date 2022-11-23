@@ -3,27 +3,18 @@
 namespace ArtARTs36\LaravelNotificationsLogger\Loggers;
 
 use ArtARTs36\LaravelNotificationsLogger\Contracts\MessageRepository;
-use ArtARTs36\LaravelNotificationsLogger\Contracts\SystemNameSelector;
 use ArtARTs36\LaravelNotificationsLogger\Data\AttachmentData;
 use ArtARTs36\LaravelNotificationsLogger\Data\MessageData;
 use ArtARTs36\LaravelNotificationsLogger\Models\Attachment;
 use ArtARTs36\LaravelNotificationsLogger\Models\Message;
-use ArtARTs36\LaravelNotificationsLogger\Models\System;
 use ArtARTs36\LaravelNotificationsLogger\Operation\System\Envelope;
-use ArtARTs36\LaravelNotificationsLogger\Operation\System\NameSelector;
+use ArtARTs36\LaravelNotificationsLogger\Operation\System\Selector;
 use ArtARTs36\LaravelNotificationsLogger\Repositories\AttachmentRepository;
-use ArtARTs36\LaravelNotificationsLogger\Repositories\SystemRepository;
 
 class Logger
 {
-    /** @var NameSelector */
-    protected $systemName;
-
-    /** @var array<string, System> */
-    protected $systems = [];
-
-    /** @var SystemRepository */
-    protected $systemRepo;
+    /** @var Selector */
+    protected $system;
 
     /** @var MessageRepository */
     protected $messages;
@@ -32,20 +23,18 @@ class Logger
     protected $attachments;
 
     public function __construct(
-        SystemNameSelector         $name,
-        SystemRepository     $systemRepo,
+        Selector $system,
         MessageRepository    $messages,
         AttachmentRepository $attachments
     ) {
-        $this->systemName = $name;
-        $this->systemRepo = $systemRepo;
+        $this->system = $system;
         $this->messages = $messages;
         $this->attachments = $attachments;
     }
 
     public function save(MessageData $msgData): Message
     {
-        $system = $this->getSystem($msgData);
+        $system = $this->system->select(new Envelope($msgData->subject, $msgData->body));
 
         $message = $this->messages->create(
             $msgData->subject,
@@ -71,25 +60,5 @@ class Logger
             $attachment->encode(),
             $attachment->mime
         );
-    }
-
-    protected function getSystem(MessageData $message): ?System
-    {
-        $name = $this->systemName->select(new Envelope($message->subject, $message->body));
-
-        if ($name === null) {
-            return null;
-        }
-
-        return $this->getOrFindOrCreateSystem($name);
-    }
-
-    protected function getOrFindOrCreateSystem(string $slug): System
-    {
-        if (! array_key_exists($slug, $this->systems)) {
-            $this->systems[$slug] = $this->systemRepo->findOrCreate($slug);
-        }
-
-        return $this->systems[$slug];
     }
 }

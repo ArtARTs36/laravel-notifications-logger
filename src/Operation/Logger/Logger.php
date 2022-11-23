@@ -1,6 +1,6 @@
 <?php
 
-namespace ArtARTs36\LaravelNotificationsLogger\Loggers;
+namespace ArtARTs36\LaravelNotificationsLogger\Operation\Logger;
 
 use ArtARTs36\LaravelNotificationsLogger\Contracts\MessageRepository;
 use ArtARTs36\LaravelNotificationsLogger\Data\AttachmentData;

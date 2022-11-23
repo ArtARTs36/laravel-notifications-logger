@@ -3,7 +3,7 @@
 namespace ArtARTs36\LaravelNotificationsLogger\Tests\Unit;
 
 use ArtARTs36\LaravelNotificationsLogger\Data\MessageData;
-use ArtARTs36\LaravelNotificationsLogger\Loggers\Logger;
+use ArtARTs36\LaravelNotificationsLogger\Operation\Logger\Logger;
 use ArtARTs36\LaravelNotificationsLogger\Operation\System\NameSelector;
 use ArtARTs36\LaravelNotificationsLogger\Tests\TestCase;
 

@@ -4,7 +4,7 @@ namespace ArtARTs36\LaravelNotificationsLogger\Event;
 
 use ArtARTs36\LaravelNotificationsLogger\Data\AttachmentData;
 use ArtARTs36\LaravelNotificationsLogger\Data\MessageData;
-use ArtARTs36\LaravelNotificationsLogger\Loggers\Logger;
+use ArtARTs36\LaravelNotificationsLogger\Operation\Logger\Logger;
 use ArtARTs36\LaravelNotificationsLogger\Operation\Swift\AttachmentExtractor;
 use Illuminate\Mail\Events\MessageSent;
 
